@@ -1,3 +1,6 @@
+agents:
+  queue: "engaging"
+
 steps:
   - command: "echo \"Hello world\""
     label: "A basic test for GitHub Configuration"
