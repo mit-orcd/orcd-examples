@@ -4,6 +4,11 @@ agents:
 steps:
   - command: "echo \"Hello world\""
     label: "A basic test for GitHub Configuration"
-  - command: "echo \"Hello world 2\""
-    label: "A basic test for GitHub Configuration Part 2"
+  - label: "Create Clone of Mujoco Directory"
+    # command: srun -I --pty /bin/bash
+    command: git clone https://github.com/mit-orcd/orcd-examples.git
+  - label: "Run Mojoco Script"
+    command: cd mujoco
+    command: sbatch run_batch_engaging.sh
+
     
