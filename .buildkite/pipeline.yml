@@ -1,5 +1,5 @@
 agents:
-  queue: "engaging"
+  queue: "default"
 
 steps:
   - command: "echo \"Hello world\""
