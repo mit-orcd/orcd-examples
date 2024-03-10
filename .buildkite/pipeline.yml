@@ -2,11 +2,9 @@ agents:
   queue: "engaging"
 
 steps:
-  - command: "echo \"Hello world\""
-    label: "A basic test for GitHub Configuration"
-  # - label: "Create Clone of Mujoco Directory"
-  #   # command: srun -I --pty /bin/bash
-  #   command: git clone https://github.com/mit-orcd/orcd-examples.git
+  - label:  "Run Mujoco Python File"
+    command: python mujoco_test.py
+ 
   - label: "Run Mojoco Script"
     command: |
       cd mujoco
