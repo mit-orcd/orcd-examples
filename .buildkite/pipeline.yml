@@ -3,7 +3,9 @@ agents:
 
 steps:
   - label:  "Run Mujoco Python File"
-    command: python mujoco_test.py
+    command: |
+      cd mujoco
+      python mujoco_test.py
  
   - label: "Run Mojoco Script"
     command: |
