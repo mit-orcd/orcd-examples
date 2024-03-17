@@ -1,0 +1,6 @@
+#!/bin/bash
+srun -N 1 -n 1 --pty /bin/bash
+cd $HOME/.buildkite-agent 
+./bin/buildkite-agent start --tags "queue=engaging"
+
+
