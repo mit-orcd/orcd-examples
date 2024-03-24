@@ -2,6 +2,9 @@ agents:
   queue: "engaging"
 
 steps:
+  - label: "Install Conda"
+    command:
+      srun install_conda.sh
   - label: "Install mpi4py"
     command:
       conda install -c conda-forge mpi4py
