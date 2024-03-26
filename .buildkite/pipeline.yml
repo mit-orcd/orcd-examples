@@ -2,16 +2,14 @@ agents:
   queue: "engaging"
 
 steps:
-  # - label: "Install Conda"
-  #   command:
-  #     srun install_conda.sh
   - label: "Install mpi4py"
     command:
-      conda install -c conda-forge mpi4py
+      conda install -c conda-forge mpi4py -y 
   - label: "Run python files"
     command: |
-      python p2p-array.py
-      python p2p-send-recv.py
+      cd mpi4py
+      mpirun -np 4 python p2p-array.py
+      mpirun -np 4 python p2p-send-recv.py
   - label: "Submit Job"
     command:
       sbatch p2p-job.sh
