@@ -4,7 +4,10 @@ agents:
 
 steps:
   - label: "test env"
-    command: echo $$BUILDKITE_AGENT_META_DATA_QUEUE
+    command: |
+      echo $$BUILDKITE_AGENT_META_DATA_QUEUE
+      echo $$BUILDKITE_AGENT_META_DATA_QUEUE == "local"
+    
 
   - label: "Load Modules on Engaging"
     command: |
@@ -38,7 +41,7 @@ steps:
     depends_on: "setup"
     agents:
       queue: "local"
-    if: $$BUILDKITE_AGENT_META_DATA_QUEUE == local
+    if: $$BUILDKITE_AGENT_META_DATA_QUEUE == "local"
 
   - label: "Submit Job on Engaging using Sbatch"
     command:
