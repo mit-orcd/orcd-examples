@@ -14,10 +14,10 @@ steps:
   - label: "Create Virutal Environment"
     # need openMPI to use pip install mpi4py (user install locally)
     command:
-      conda install -c conda-forge mpi4py -y 
+      # conda install -c conda-forge mpi4py -y 
       # python3 -m venv .venv
       # source .venv/bin/activate
-      # pip install numpy mpi4py
+      pip install numpy mpi4py
     key: "setup"
     agents:
       queue: "engaging"
