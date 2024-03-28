@@ -50,23 +50,23 @@ steps:
       queue: "local"
   
   - label: "Test 2"
-  command:
-    echo "hello World"
-  if:  queue == "local"
+    command:
+      echo "hello World"
+    if:  queue == "local"
   
-  # - label: "Test 3"
-  # command:
-  #   echo "hello World"
-  # if: 
-  #   agent:
-  #     queue: "local"
+  - label: "Test 3"
+    command:
+      echo "hello World"
+    if: 
+      agent:
+        queue: "local"
 
-  # - label: "Test 4"
-  #   command:
-  #     echo "hello World"
-  #   if: 
-  #     agents:
-  #       queue: "local"
+  - label: "Test 4"
+    command:
+      echo "hello World"
+    if: 
+      agents:
+        queue: "local"
     
 
   
