@@ -8,9 +8,7 @@ steps:
       module use /orcd/software/community/001/modulefiles/rocky8/
       module load miniforge
       module load openmpi/4.1.4-pmi-ucx-x86_64 
-    agents:
-      match:
-        queue: "engaging"
+    if: queue = "engaging"
     
   - label: "Create Virutal Environment"
     # need openMPI to use pip install mpi4py (user install locally)
@@ -20,9 +18,9 @@ steps:
       # source .venv/bin/activate
       # pip install numpy mpi4py
     key: "setup"
-    agents:
-      queue: "engaging"
-      queue: "local"
+    # agents:
+    #   queue: "engaging"
+    #   queue: "local"
 
 
   - label: "Run python files for agents running locally"
@@ -30,17 +28,13 @@ steps:
       cd mpi4py
       mpirun -np 4 python p2p-array.py
       mpirun -np 4 python p2p-send-recv.py
-    agents: 
-      match:
-        queue: "local"
+    if: queue = "local"
     depends_on: "setup"
 
   - label: "Submit Job on Engaging using Sbatch"
     command:
       sbatch p2p-job.sh
-    agents:
-      match:
-        queue: "engaging"
+    if: queue = "engaging"
     depends_on: "setup"
   
   # - label:  "Run Mujoco Python File"
