@@ -45,6 +45,10 @@ steps:
     agents:
       queue: "engaging"
 
+  - label: "test"
+    command:
+      echo "hello"
+    if: BUILDKITE_AGENT_META_DATA_QUEUE == local
 
   
   # - label:  "Run Mujoco Python File"
