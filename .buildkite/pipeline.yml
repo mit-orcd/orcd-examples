@@ -3,6 +3,9 @@ agents:
   queue: "local"
 
 steps:
+  - lable: "test env"
+    command: echo $$BUILDKITE_AGENT_META_DATA_QUEUE
+
   - label: "Load Modules on Engaging"
     command: |
       module use /orcd/software/community/001/modulefiles/rocky8/
