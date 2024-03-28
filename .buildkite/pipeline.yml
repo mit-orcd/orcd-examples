@@ -1,18 +1,39 @@
 agents:
   queue: "engaging"
+  queue: "local"
 
 steps:
-  - label: "Install mpi4py"
+  - label: "Load Modules on Engaging"
+    command: |
+      module use /orcd/software/community/001/modulefiles/rocky8/
+      module load miniforge
+      module load openmpi/4.1.4-pmi-ucx-x86_64 
+    agents:
+      queue: "engaging"
+    
+  - label: "Create Virutal Environment"
+    # need openMPI to use pip install mpi4py (user install locally)
     command:
-      conda install -c conda-forge mpi4py -y 
-  - label: "Run python files"
+      python3 -m venv .venv
+      source .venv/bin/activate
+      pip install numpy mpi4py
+    key: "setup"
+
+  - label: "Run python files for agents running locally"
     command: |
       cd mpi4py
       mpirun -np 4 python p2p-array.py
       mpirun -np 4 python p2p-send-recv.py
-  - label: "Submit Job"
+    agents: 
+      queue: "local"
+    depends_on: "setup"
+
+  - label: "Submit Job on Engaging using Sbatch"
     command:
       sbatch p2p-job.sh
+    agents:
+      queue: "engaging"
+    depends_on: "setup"
   
   # - label:  "Run Mujoco Python File"
   #   command: |
