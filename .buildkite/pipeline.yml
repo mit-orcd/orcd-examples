@@ -10,14 +10,14 @@ steps:
       module load openmpi/4.1.4-pmi-ucx-x86_64 
     agents:
       queue: "engaging"
-    skip: if queue != engaging
+    agents:
+      queue: "engaging"
     
   - label: "Create Virutal Environment"
     # need openMPI to use pip install mpi4py (user install locally)
     command:
-      # conda install -c conda-forge mpi4py -y 
-      # python3 -m venv .venv
-      # source .venv/bin/activate
+      python3 -m venv .venv
+      source .venv/bin/activate
       pip install numpy mpi4py
     key: "setup"
     agents:
@@ -33,7 +33,8 @@ steps:
     agents: 
       queue: "local"
     depends_on: "setup"
-    skip: if queue != local
+    agents:
+      queue: "local"
 
   - label: "Submit Job on Engaging using Sbatch"
     command:
@@ -41,28 +42,9 @@ steps:
     agents:
       queue: "engaging"
     depends_on: "setup"
-    skip: "if queue != engaging"
+    agents:
+      queue: "engaging"
 
-  
-  - label: "Test 2"
-    command:
-      echo "hello World"
-    if:  queue == "local"
-  
-  # - label: "Test 3"
-  #   command:
-  #     echo "hello World"
-  #   if: 
-  #     agent:
-  #       queue: "local"
-
-  # - label: "Test 4"
-  #   command:
-  #     echo "hello World"
-  #   if: 
-  #     agents:
-  #       queue: "local"
-    
 
   
   # - label:  "Run Mujoco Python File"
