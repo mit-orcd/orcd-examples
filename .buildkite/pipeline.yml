@@ -1,11 +1,6 @@
-# agents:
-#   queue: "engaging"
-#   queue: "local"
 agents:
-  engaging:
-    queue: "engaging"
-  local:
-    queue: "local"
+  queue: "engaging"
+  queue: "local"
 
 steps:
   - label: "Load Modules on Engaging"
