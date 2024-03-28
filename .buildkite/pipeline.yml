@@ -15,8 +15,9 @@ steps:
     # need openMPI to use pip install mpi4py (user install locally)
     command:
       python3 -m venv .venv
-      source .venv/bin/activate
-      pip install numpy mpi4py
+      source .venv/bin/activate && pip install numpy mpi4py
+      # source .venv/bin/activate
+      # pip install numpy mpi4py
     key: "setup"
 
   - label: "Run python files for agents running locally"
