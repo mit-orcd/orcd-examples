@@ -10,7 +10,7 @@ steps:
       module load openmpi/4.1.4-pmi-ucx-x86_64 
     agents:
       queue: "engaging"
-    if: build.env("BUILDKITE_AGENT_META_DATA_QUEUE") == "engaging"
+    if: build.env($$BUILDKITE_AGENT_META_DATA_QUEUE) == "engaging"
 
     
   - label: "Create Virutal Environment"
@@ -35,7 +35,7 @@ steps:
     depends_on: "setup"
     agents:
       queue: "local"
-    if: build.env("BUILDKITE_AGENT_META_DATA_QUEUE") == "local"
+    if: build.env($$BUILDKITE_AGENT_META_DATA_QUEUE) == "local"
 
   - label: "Submit Job on Engaging using Sbatch"
     command:
@@ -45,7 +45,7 @@ steps:
     depends_on: "setup"
     agents:
       queue: "engaging"
-    if: build.env("BUILDKITE_AGENT_META_DATA_QUEUE") == "engaging"
+    if: build.env($$BUILDKITE_AGENT_META_DATA_QUEUE) == "engaging"
 
   # - label: "test"
   #   command:
