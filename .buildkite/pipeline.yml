@@ -8,7 +8,7 @@ steps:
       module use /orcd/software/community/001/modulefiles/rocky8/
       module load miniforge
       module load openmpi/4.1.4-pmi-ucx-x86_64 
-    if: queue = "engaging"
+    if: queue == "engaging"
     
   - label: "Create Virutal Environment"
     # need openMPI to use pip install mpi4py (user install locally)
@@ -28,13 +28,13 @@ steps:
       cd mpi4py
       mpirun -np 4 python p2p-array.py
       mpirun -np 4 python p2p-send-recv.py
-    if: queue = "local"
+    if: queue == "local"
     depends_on: "setup"
 
   - label: "Submit Job on Engaging using Sbatch"
     command:
       sbatch p2p-job.sh
-    if: queue = "engaging"
+    if: queue == "engaging"
     depends_on: "setup"
   
   # - label:  "Run Mujoco Python File"
