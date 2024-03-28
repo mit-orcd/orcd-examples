@@ -10,7 +10,7 @@ steps:
       module load openmpi/4.1.4-pmi-ucx-x86_64 
     agents:
       queue: "engaging"
-    skip_condition: "if queue != 'engaging'"
+    skip: "if queue != 'engaging'"
     
   - label: "Create Virutal Environment"
     # need openMPI to use pip install mpi4py (user install locally)
@@ -33,7 +33,7 @@ steps:
     agents: 
       queue: "local"
     depends_on: "setup"
-    skip_condition: "if queue != 'local'"
+    skip: "if queue != 'local'"
 
   - label: "Submit Job on Engaging using Sbatch"
     command:
@@ -41,7 +41,7 @@ steps:
     agents:
       queue: "engaging"
     depends_on: "setup"
-    skip_condition: "if queue != 'engaging'"
+    skip: "if queue != 'engaging'"
   
   # - label:  "Run Mujoco Python File"
   #   command: |
