@@ -38,7 +38,7 @@ steps:
     depends_on: "setup"
     agents:
       queue: "local"
-    if: $$BUILDKITE_AGENT_META_DATA_QUEUE == "local"
+    if: $$BUILDKITE_AGENT_META_DATA_QUEUE == local
 
   - label: "Submit Job on Engaging using Sbatch"
     command:
