@@ -3,10 +3,16 @@ agents:
   queue: "local"
 
 steps:
-  - label: "test env"
+  - label: "test env 1"
     command: |
       echo $$BUILDKITE_AGENT_META_DATA_QUEUE
       echo $$BUILDKITE_AGENT_META_DATA_QUEUE == "local"
+  - label: "test env 2"
+    command: |
+      "echo $$BUILDKITE_AGENT_META_DATA_QUEUE" == "local"
+  - label: "test env"
+    command: |
+      "echo $$BUILDKITE_AGENT_META_DATA_QUEUE == "local""
     
 
   - label: "Load Modules on Engaging"
