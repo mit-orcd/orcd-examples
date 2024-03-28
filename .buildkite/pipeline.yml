@@ -9,10 +9,10 @@ steps:
       echo $$BUILDKITE_AGENT_META_DATA_QUEUE == "local"
   - label: "test env 2"
     command: |
-      echo "$$BUILDKITE_AGENT_META_DATA_QUEUE" == "local"
-  - label: "test env"
-    command: |
-      echo "$$BUILDKITE_AGENT_META_DATA_QUEUE == "local""
+      echo [$$BUILDKITE_AGENT_META_DATA_QUEUE == "local"]
+  # - label: "test env"
+  #   command: |
+  #     echo "$$BUILDKITE_AGENT_META_DATA_QUEUE == "local""
     
 
   - label: "Load Modules on Engaging"
