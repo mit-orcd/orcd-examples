@@ -43,10 +43,10 @@ steps:
     depends_on: "setup"
     skip: "if queue != engaging"
 
-  - label: "Test 1"
-    command:
-      echo "hello World"
-    if: queue: "local"
+  # - label: "Test 1"
+  #   command:
+  #     echo "hello World"
+  #   if: queue: "local"
   
   - label: "Test 2"
     command:
