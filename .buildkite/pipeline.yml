@@ -33,7 +33,7 @@ steps:
     agents: 
       queue: "local"
     depends_on: "setup"
-    skip: "if queue != local"
+    skip: if queue != local
 
   - label: "Submit Job on Engaging using Sbatch"
     command:
