@@ -1,69 +1,20 @@
 agents:
   queue: "engaging"
-  queue: "local"
 
 steps:
-  - label: "test env 1"
-    command: |
-      echo $$BUILDKITE_AGENT_META_DATA_QUEUE
-      echo $$BUILDKITE_AGENT_META_DATA_QUEUE == "local"
-  - label: "test env 2"
-    command: |
-      echo [$$BUILDKITE_AGENT_META_DATA_QUEUE == "local"]
-  # - label: "test env"
-  #   command: |
-  #     echo "$$BUILDKITE_AGENT_META_DATA_QUEUE == "local""
-    
-
-  - label: "Load Modules on Engaging"
-    command: |
-      module use /orcd/software/community/001/modulefiles/rocky8/
-      module load miniforge
-      module load openmpi/4.1.4-pmi-ucx-x86_64 
-    agents:
-      queue: "engaging"
-    if: $$BUILDKITE_AGENT_META_DATA_QUEUE == "engaging"
-
-    
-  - label: "Create Virutal Environment"
-    # need openMPI to use pip install mpi4py (user install locally)
+  # - label: "Install Conda"
+  #   command:
+  #     srun install_conda.sh
+  - label: "Install mpi4py"
     command:
-      python3 -m venv .venv
-      source .venv/bin/activate
-      pip install numpy mpi4py
-    key: "setup"
-    agents:
-      queue: "engaging"
-      queue: "local"
-
-
-  - label: "Run python files for agents running locally"
+      conda install -c conda-forge mpi4py
+  - label: "Run python files"
     command: |
-      cd mpi4py
-      mpirun -np 4 python p2p-array.py
-      mpirun -np 4 python p2p-send-recv.py
-    agents: 
-      queue: "local"
-    depends_on: "setup"
-    agents:
-      queue: "local"
-    if: $$BUILDKITE_AGENT_META_DATA_QUEUE == "local"
-
-  - label: "Submit Job on Engaging using Sbatch"
+      python p2p-array.py
+      python p2p-send-recv.py
+  - label: "Submit Job"
     command:
       sbatch p2p-job.sh
-    agents:
-      queue: "engaging"
-    depends_on: "setup"
-    agents:
-      queue: "engaging"
-    if: $$BUILDKITE_AGENT_META_DATA_QUEUE == "engaging"
-
-  # - label: "test"
-  #   command:
-  #     echo "hello"
-  #   if: "$BUILDKITE_AGENT_META_DATA_QUEUE" == "local"
-
   
   # - label:  "Run Mujoco Python File"
   #   command: |
