@@ -1,0 +1,30 @@
+agents:
+  queue: "engaging"
+
+steps:
+  - label: "Load Modules on Engaging"
+    command: |
+      module use /orcd/software/community/001/modulefiles/rocky8/
+      module load miniforge
+      module load openmpi/4.1.4-pmi-ucx-x86_64
+      python3 -m venv .venv
+      source .venv/bin/activate
+      pip install numpy mpi4py
+
+
+  - label: "Submit Job on Engaging using Sbatch"
+    command:
+      sbatch p2p-job.sh
+
+  
+  # - label:  "Run Mujoco Python File"
+  #   command: |
+  #     cd mujoco
+  #     python mujoco_test.py
+ 
+  # - label: "Run Mojoco Script"
+  #   command: |
+  #     cd mujoco
+  #     sbatch run_batch_engaging.sh
+
+    

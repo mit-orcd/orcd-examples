@@ -1,29 +1,19 @@
 agents:
-  queue: "engaging"
+  queue: "local"
 
 steps:
-  # - label: "Install Conda"
-  #   command:
-  #     srun install_conda.sh
-  - label: "Install mpi4py"
+  - label: "Create Virutal Environment"
+    # need openMPI to use pip install mpi4py (user install locally)
     command:
-      conda install -c conda-forge mpi4py
-  - label: "Run python files"
-    command: |
-      python p2p-array.py
-      python p2p-send-recv.py
-  - label: "Submit Job"
-    command:
-      sbatch p2p-job.sh
-  
-  # - label:  "Run Mujoco Python File"
-  #   command: |
-  #     cd mujoco
-  #     python mujoco_test.py
- 
-  # - label: "Run Mojoco Script"
-  #   command: |
-  #     cd mujoco
-  #     sbatch run_batch_engaging.sh
+      python3 -m venv .venv
+      source .venv/bin/activate
+      pip install numpy mpi4py
+    key: "setup"
 
-    
+  - label: "Run python files for agents running locally"
+    command: |
+      cd mpi4py
+      mpirun -np 4 python p2p-array.py
+      mpirun -np 4 python p2p-send-recv.py
+    depends_on: "setup"
+   
