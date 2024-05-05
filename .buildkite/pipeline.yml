@@ -1,22 +1,4 @@
-agents:
-  queue: "local"
-
 steps:
-  - label: "Create Virutal Environment"
-    # need openMPI to use pip install mpi4py (user install locally)
+  - label: "Test"
     command: |
-      whoami
-      python3 -m venv .venv
-      source .venv/bin/activate
-      pip install numpy mpi4py
-      cd mpi4py
-      mpirun -np 4 python p2p-array.py
-      mpirun -np 4 python p2p-send-recv.py
-
-  # - label: "Run python files for agents running locally"
-  #   command: |
-  #     cd mpi4py
-  #     mpirun -np 4 python p2p-array.py
-  #     mpirun -np 4 python p2p-send-recv.py
-  #   depends_on: "setup"
-   
+      echo "Hi"
