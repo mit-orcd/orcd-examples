@@ -1,4 +1,0 @@
-steps:
-  - label: "Test"
-    command: |
-      echo "Hi"
