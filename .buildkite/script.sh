@@ -1,18 +1,12 @@
 #!/bin/bash
 
+# exit immediately on failure, or if an undefined variable is used
 set -eu
 
+# begin the pipeline.yml file
 echo "steps:"
 
-# A step for each file in .test/
-
-find .test/* -type f | while read -r FILE; do
-  if [[ "$FILE" == *.sh ]]; then
-    echo "  - command: \"$FILE\""
-    echo "    label: \"$(basename "$FILE")\""
-  elif [[ "$FILE" == *.py ]]; then
-    echo "  - command: \"python $FILE\""
-    echo "    label: \"$(basename "$FILE")\""
-  fi
+# add a new command step to run the tests in each test directory
+for test_dir in .test/*/; do
+  echo "  - command: \"run_tests "${test_dir}"\""
 done
-
