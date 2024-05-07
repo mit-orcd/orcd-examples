@@ -7,6 +7,6 @@ set -eu
 echo "steps:"
 
 # add a new command step to run the tests in each test directory
-for test_dir in .test/*/; do
-  echo "  - command: \"run_tests "${test_dir}"\""
+for test_file in .test/*.sh; do
+  echo "  - command: \"bash "${test_file}"\""
 done
