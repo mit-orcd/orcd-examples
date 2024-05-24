@@ -12,6 +12,6 @@ else
     pip install 'mujoco-py<2.2,>=2.1'
     pip install numpy mpi4py
 
-    mpirun -np 4 python p2p-send-recv.py
-    mpirun -np 4 python p2p-array.py
+    mpirun -np 4 python run_batch_engaging.sh
+    mpirun -np 4 python run_batch_supercloud.sh
 fi

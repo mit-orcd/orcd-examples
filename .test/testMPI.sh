@@ -3,6 +3,16 @@
 if [[ $HOSTNAME == "eofe10.mit.edu" ]];
 then
     echo "On Engaging";
+
+    module load anaconda3/2023.07
+
+    source activate mpi
+    mpirun -np $SLURM_NTASKS python p2p-send-recv.py
+
+    source activate mpi
+    mpirun -np $SLURM_NTASKS python p2p-array.py
+    sbatch p2p-job.sh
+    
 else
     echo "Not on Engaging";
 
