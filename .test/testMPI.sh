@@ -2,6 +2,7 @@
 
 if [[ $HOSTNAME == "eofe10.mit.edu" ]];
 then
+    echo $HOSTNAME
     echo "On Engaging";
 
     module load anaconda3/2023.07
@@ -14,6 +15,7 @@ then
     sbatch p2p-job.sh
     
 else
+    echo $HOSTNAME
     echo "Not on Engaging";
 
     cd mpi4py
