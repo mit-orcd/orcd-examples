@@ -8,6 +8,9 @@ then
     source .venv/bin/activate
     pip install 'mujoco-py<2.2,>=2.1'
 
+    echo "Testing Example";
+    python mujoco_test.py
+    echo "Testing Job";
     sbatch run_batch_engaging.sh
 
 else
