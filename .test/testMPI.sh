@@ -5,14 +5,12 @@ then
     echo $HOSTNAME
     echo "On Engaging";
 
-    module load anaconda3/2023.07
+    cd mpi4py
+    python3 -m venv .venv
+    source .venv/bin/activate
+    pip install numpy mpi4py
 
-    source activate mpi
-    mpirun -np $SLURM_NTASKS python p2p-send-recv.py
-
-    source activate mpi
-    mpirun -np $SLURM_NTASKS python p2p-array.py
-    sbatch p2p-job.sh
+    sbatch p2p-job-engaging.sh
     
 else
     echo $HOSTNAME
