@@ -8,6 +8,9 @@ then
     cd mpi4py
     python3 -m venv .venv
     source .venv/bin/activate
+    module load gcc
+    module load openmpi
+
     pip install numpy mpi4py
 
     sbatch p2p-job-engaging.sh
