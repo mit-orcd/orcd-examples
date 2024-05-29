@@ -8,7 +8,7 @@ then
     source .venv/bin/activate
     pip install 'mujoco-py<2.2,>=2.1'
 
-    mpirun -np 4 python run_batch_engaging.sh
+    sbatch run_batch_engaging.sh
 
 else
     echo "Testing on Local (Not Engaging)";
