@@ -9,7 +9,7 @@ then
     pip install 'mujoco-py<2.2,>=2.1'
 
     echo "Testing Example";
-    module load python/3.8.3
+    module load python/3.10.8-x86_64
     python mujoco_test.py
     echo "Testing Job";
     sbatch run_batch_engaging.sh
