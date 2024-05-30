@@ -6,10 +6,10 @@ then
     cd mujoco
     python3 -m venv .venv
     source .venv/bin/activate
-    pip install 'mujoco-py<2.2,>=2.1'
-
-    echo "Testing Example";
     module load python/3.10.8-x86_64
+    pip install 'mujoco-py<2.2,>=2.1'
+    echo "Testing Example";
+
     python mujoco_test.py
     echo "Testing Job";
     sbatch run_batch_engaging.sh
