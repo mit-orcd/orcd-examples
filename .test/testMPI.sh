@@ -18,9 +18,11 @@ then
     mpirun -np 4 python p2p-array.py
 
     echo "Testing Job";
-    sbatch p2p-job-engaging.sh
+    # sbatch p2p-job-engaging.sh
+    # tail -f
     job_id=$(sbatch p2p-job-engaging.sh | awk '{print $4}')
-    echo $job_id
+    cat slurm_$job_id.out
+    
     
 else
     echo $HOSTNAME
