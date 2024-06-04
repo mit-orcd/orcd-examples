@@ -21,7 +21,7 @@ then
     # sbatch p2p-job-engaging.sh
     # tail -f
     job_id=$(sbatch p2p-job-engaging.sh | awk '{print $4}')
-    cat slurm_$job_id.out
+    cat slurm-$job_id.out
     
     
 else
