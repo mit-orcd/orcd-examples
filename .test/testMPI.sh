@@ -19,9 +19,8 @@ then
 
     echo "Testing Job";
     sbatch p2p-job-engaging.sh
-    job_id=$(sbatch p2p-job-engaging.sh)
+    job_id=$(sbatch p2p-job-engaging.sh | awk '{print $4}')
     echo $job_id
-
     
 else
     echo $HOSTNAME
