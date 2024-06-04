@@ -19,11 +19,9 @@ then
 
     echo "Testing Job";
     sbatch p2p-job-engaging.sh
-    echo "Using env var"
-    echo $SLURM_JOB_ID
-    echo "using squeue"
-    squeue -n
-    
+    job_id=$(sbatch p2p-job-engaging.sh)
+    echo $job_id
+
     
 else
     echo $HOSTNAME
