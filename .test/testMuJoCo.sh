@@ -12,7 +12,11 @@ then
 
     python mujoco_test.py
     echo "Testing Job";
-    sbatch run_batch_engaging.sh
+    job_id=$(sbatch run_batch_engaging.sh| awk '{print $4}')
+    squeue -j $job_id
+    sacct -j $job_id -o State
+    sacct -j $job_id -o State | grep -c -m 1 FAILED
+    # sbatch run_batch_engaging.sh
 
 else
     echo "Testing on Local (Not Engaging)";

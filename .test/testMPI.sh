@@ -22,7 +22,9 @@ then
     # tail -f
     job_id=$(sbatch p2p-job-engaging.sh | awk '{print $4}')
     squeue -j $job_id
-    cat slurm-$job_id.out
+    sacct -j $job_id -o State
+    sacct -j $job_id -o State | grep -c -m 1 FAILED
+    
     
     
 else
