@@ -23,6 +23,7 @@ then
     job_id=$(sbatch p2p-job-engaging.sh | awk '{print $4}')
 
     while [ squeue -j $job_id ]; do sleep 2; done
+    echo $?
     sacct -j $job_id -o State | grep -c -m 1 FAILED
     
     # sacct -j $job_id -o State
