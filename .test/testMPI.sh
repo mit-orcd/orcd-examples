@@ -21,6 +21,7 @@ then
     # sbatch p2p-job-engaging.sh
     # tail -f
     job_id=$(sbatch p2p-job-engaging.sh | awk '{print $4}')
+    squeue -j $job_id
     cat slurm-$job_id.out
     
     
