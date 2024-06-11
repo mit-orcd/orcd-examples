@@ -26,6 +26,7 @@ then
     while [[ $(squeue -j $job_id | wc -l) -gt 1 ]]; do sleep 2; done
     pwd 
     ls
+    tail -f slurm-$job_id.out
     sacct -j $job_id -o State | grep -c -m 1 FAILED
     
     # sacct -j $job_id -o State
