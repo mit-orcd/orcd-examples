@@ -21,10 +21,13 @@ then
     # sbatch p2p-job-engaging.sh
     # tail -f
     job_id=$(sbatch p2p-job-engaging.sh | awk '{print $4}')
-    squeue -j $job_id
-    sacct -j $job_id -o State
+
+    while [ squeue -j $job_id ]; do sleep 2; done
     sacct -j $job_id -o State | grep -c -m 1 FAILED
     
+    # sacct -j $job_id -o State
+    # squeue -j $job_id | wc -1
+
     
     
 else
