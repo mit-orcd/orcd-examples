@@ -21,7 +21,7 @@ then
     # sbatch p2p-job-engaging.sh
     # tail -f
     
-    job_id=$(sbatch p2p-job-engaging.sh | awk '{print $4}')
+    job_id=$(sbatch -p sched_mit_orcd p2p-job-engaging.sh | awk '{print $4}')
 
     while [[ $(squeue -j $job_id | wc -l) -gt 1 ]]; do sleep 2; done
     pwd 
