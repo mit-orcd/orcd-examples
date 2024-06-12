@@ -29,7 +29,8 @@ then
     ls
 
     cat slurm-$job_id.out
-    sacct -j $job_id -o State | grep -c -m 1 FAILED
+    jobfailed=$(sacct -j $job_id -o State | grep -c -m 1 FAILED)
+    if [[ $jobfailed -eq 0 ]]; then exit 0; fi 
     
     # sacct -j $job_id -o State
     # squeue -j $job_id | wc -1
