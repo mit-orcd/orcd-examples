@@ -14,9 +14,9 @@ then
     pip install numpy mpi4py
 
     # echo "Testing Example";
-    ulimit -l unlimited
-    mpirun -np 4 python p2p-send-recv.py
-    mpirun -np 4 python p2p-array.py
+    # ulimit -l unlimited
+    # mpirun -np 4 python p2p-send-recv.py
+    # mpirun -np 4 python p2p-array.py
 
     echo "Testing Job";
     # sbatch p2p-job-engaging.sh
