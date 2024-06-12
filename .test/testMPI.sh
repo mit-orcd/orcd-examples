@@ -34,11 +34,11 @@ then
     # sacct -j $job_id -o State
     # squeue -j $job_id | wc -1
 
-elif [[ $HOSTNAME == "eofe7.mit.edu"]];
+elif [[ $HOSTNAME == "eofe7.mit.edu" ]];
 then
     echo $HOSTNAME
     echo "On Engaging (Eofe7)";
-    
+
     cd mpi4py
     python3 -m venv .venv
     source .venv/bin/activate
