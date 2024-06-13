@@ -13,16 +13,21 @@ then
 
     pip install numpy mpi4py
 
-    # echo "Testing Example";
-    # ulimit -l unlimited
-    # mpirun -np 4 python p2p-send-recv.py
-    # mpirun -np 4 python p2p-array.py
+    echo "Testing Example";
+    ulimit -l unlimited
+    mpirun -np 4 python p2p-send-recv.py
+    mpirun -np 4 python p2p-array.py
 
     echo "Testing Job"
     # sbatch p2p-job-engaging.sh
     # tail -f
     
     job_id=$(sbatch -p sched_mit_orcd p2p-job-engaging.sh | awk '{print $4}')
+    # check if job_id is empty 
+    if [[ -z $job_id ]]; then
+        echo "Job submission failed: job_id is empty"
+        exit 1
+    fi
 
     while [[ $(squeue -j $job_id | wc -l) -gt 1 ]]; do sleep 2; done
     pwd 
