@@ -5,8 +5,6 @@
 module load miniforge
 module load openmpi/4.1.4
 
-# source activate mpi
 mpirun -np $SLURM_NTASKS python p2p-send-recv.py
 
-# source activate mpi
 mpirun -np $SLURM_NTASKS python p2p-array.py
